@@ -10,7 +10,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
 
-  private Spark Pivotmotor = new Spark(1) 
+  //Motor, Joysticks, encoder 
+  private Spark Pivotmotor = new Spark(1); 
+
+  private Joystick joy1 = new Joystick(1);
+
+  private Encoder encoder = new Encoder(0, 1, true, EncodingType.k4X);
+
+  privae final double kDriveTick2Feet = 1.0
   
   private Command m_autonomousCommand;
 
@@ -36,6 +43,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+
+    encoder.reset();
+    
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
@@ -44,7 +54,12 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+       //Joystick commands 
+    if (joy1.getRawButton(1)) {
+
+    } else if (joy1.getRawButton(2))
+  }
 
   @Override
   public void autonomousExit() {}
